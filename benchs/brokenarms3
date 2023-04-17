@@ -1,0 +1,5 @@
+intuitionistic
+facts:
+P1 v P2 v P3;
+consequence:
+P6 ^ !P7 ^ P8

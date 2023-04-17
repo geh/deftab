@@ -1,0 +1,14 @@
+classical
+
+% P0: is a bird
+% P1: flies
+
+facts:
+N0: bird;
+N0: !flies;
+
+defaults:
+(N0: bird) --> (N0:flies); 
+
+consequence:
+true

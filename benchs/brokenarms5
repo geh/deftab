@@ -1,0 +1,11 @@
+intuitionistic
+facts:
+P11 v P12 v P13 v P14 v P15;
+defaults:
+T --- (P21 ^ !P11) --> P21;
+T --- (P22 ^ !P12) --> P22;
+T --- (P23 ^ !P13) --> P23;
+T --- (P24 ^ !P14) --> P24;
+T --- (P25 ^ !P15) --> P25;
+consequence:
+P21 ^ P22 ^ P23 ^ P24 ^ P25

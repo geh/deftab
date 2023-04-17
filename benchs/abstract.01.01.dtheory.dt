@@ -1,0 +1,11 @@
+intuitionistic
+facts:
+	T;
+	P101;
+	P101 -> P101 -> P100;
+	~(~(P201));
+	( P201 -> ( P201 -> P200) );
+defaults:
+	P100 --- P200 --> P001;
+consequence:
+	P001

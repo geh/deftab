@@ -1,0 +1,3 @@
+intuitionistic
+consequence:
+false <-> (P1 & !P1)

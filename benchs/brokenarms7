@@ -1,0 +1,13 @@
+intuitionistic
+facts:
+P1 v P2 v P3 v P4 v P5 v P11 v P13;
+defaults:
+T --- (P6 ^ !P1) --> P6;
+T --- (P7 ^ !P2) --> P7;
+T --- (P8 ^ !P3) --> P8;
+T --- (P9 ^ !P4) --> P9;
+T --- (P10 ^ !P5) --> P10;
+T --- (P12 ^ !P11) --> P12;
+T --- (P14 ^ !P13) --> P14;
+consequence:
+P6 ^ P7 ^ P8 ^ P9 ^ P10 ^ P12 ^ P14

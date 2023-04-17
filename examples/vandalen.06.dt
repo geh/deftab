@@ -1,0 +1,3 @@
+intuitionistic
+consequence:
+P1 & (P2 v P3) <-> (P1 & P2) v (P1 & P3)
