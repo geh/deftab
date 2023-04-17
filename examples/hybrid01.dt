@@ -1,0 +1,10 @@
+classical
+
+facts:
+N0: <> N1;
+
+defaults:
+(N0: <>N1) --> (N1:<>N0); 
+
+consequence:
+N0:<><>N0;

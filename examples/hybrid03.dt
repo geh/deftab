@@ -1,0 +1,16 @@
+classical
+
+facts:
+N1: P0;
+N2: !P0;
+N1: <>N3;
+N2: <>N3;
+<>true;
+
+defaults:
+T --> [](N1);
+T --> [](N2);
+
+
+consequence:
+<><>N3;
