@@ -7,7 +7,7 @@ import qualified Data.ByteString.Char8 as C
 
 data Language = Classical | Intuitionistic deriving (Eq,Show)
 
-data Rule'= Rule' Form Form Form
+data Rule'= Rule' Form Form
   deriving (Eq,Ord,Show)
 
 -- formula, as parsed

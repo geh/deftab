@@ -34,8 +34,7 @@ import qualified Data.ByteString.Char8 as C
              exist           { (TokenE        , _) }
              '('             { (TokenOB       , _) }
              ')'             { (TokenCB       , _) }
-             rulesep1        { (TokenRuleSep1 , _) }
-             rulesep2        { (TokenRuleSep2 , _) }
+             rulesep         { (TokenRuleSep  , _) }
              ';'             { (TokenSC       , _) }
              facts           { (TokenFacts    , _) }
              defaults        { (TokenDefaults , _) }
@@ -94,8 +93,7 @@ Rules :
 
 Rule :: { Rule' }
 Rules :
-  Formula rulesep1 Formula rulesep2 Formula  { Rule' $1 $3 $5 }
-| Formula rulesep2 Formula                   { Rule' $1 $3 $3 }
+  Formula rulesep Formula       { Rule' $1 $3}
 
 Formulas :: { [Form] }
 Formulas :

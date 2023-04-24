@@ -27,7 +27,7 @@ import Deftab.Branch( Branch(..), BranchInfo(..), TodoList(..),
                     patternBlocked, intPatternBlocked,
                     diaAlreadyDone, downAlreadyDone,
                     -- defaults
-                    checkGrounded, checkBlocked, checkEnabled,
+                    checkGrounded, checkBlocked,
                     enableDefault
                     )
 import Deftab.CommandLine(Params, strategy )
@@ -167,13 +167,11 @@ ruleByChar br p d char =
          (newGrounded2,newCache2) = checkBlocked p br2 applicableRule applyRule
          br3 = br2{groundedDefaults = newGrounded2
                   , subTabCache = newCache2}
-   -- 3. for all grounded rules, check the one whose enablement is possible
-   --    branch on them applying the (Default) rule
-         (enabledRules,newCache3) = checkEnabled p br3 applicableRule applyRule
+   -- 3. for all grounded, non-blocked, branch on them applying the (Default) tableau rule
      in
-       if null enabledRules
+       if null newGrounded2
         then Nothing
-        else Just (DefaultRule enabledRules d, br3{subTabCache = newCache3})
+        else Just (DefaultRule newGrounded2 d, br3)
        
 (>>?) :: BranchInfo -> (Branch -> BranchInfo) -> BranchInfo
 clash@(BranchClash _ _ _ _) >>? _ = clash

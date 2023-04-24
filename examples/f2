@@ -4,8 +4,8 @@ N1: P1;
 N2: P2;
 
 defaults:
-T --- P1  --> N1 : <> N2 ;
-T --- !P1 --> N1 : [] P3 ;
+T --> P1 ^ (N1 : <> N2) ;
+T --> !P1 ^ (N1 : [] P3) ;
 
 consequence:
 N2: P3

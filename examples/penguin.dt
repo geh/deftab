@@ -11,4 +11,4 @@ defaults:
 (N0: bird) --> (N0:flies); 
 
 consequence:
-true
+flies;

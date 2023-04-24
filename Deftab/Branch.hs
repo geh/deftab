@@ -14,7 +14,7 @@ diaAlreadyDone,
 downAlreadyDone,
 patternOf, findByPattern,
 prefixes, positiveNomOf,
-checkGrounded, checkBlocked, checkEnabled,
+checkGrounded, checkBlocked,
 enableDefault, SubTabCache, emptyCache,
 insertCache
 ) where
@@ -783,7 +783,7 @@ iget = I.findWithDefault
 
 -- defaults rules management
 enableDefault :: Params -> Dependency -> (Rule,DependencySet) -> Branch -> BranchInfo
-enableDefault p d rds@((Rule _ _ conseq'),ds) br
+enableDefault p d rds@((Rule _ conseq'),ds) br
  = let br2 = br{ detachedDefaults = rds:(detachedDefaults br)
                , groundedDefaults = delete rds (groundedDefaults br)}
    in addFormula p br2 (PrFormula 0 (IntSet.insert d ds) True conseq') -- add consequent with dependencies
@@ -834,33 +834,7 @@ checkBlocked1 p br r ab ar stc =
    (True, stc')  -> (False, stc')
    (False, stc') -> (True,  stc')
  where conseqs = map (conseq . fst) (detachedDefaults br)
-       f       = foldr conj (justif r `conj` facts br) conseqs
-
--- for all rules yet in grounded list, return the ones that are not blocked,
--- more precisely, the ones whose consequent do not block existing enabled rules
-checkEnabled :: Params -> Branch -> Applicable r -> ApplyRule r
-             -> ([(Rule,DependencySet)], SubTabCache)
-checkEnabled p br ab ar =
-  go (groundedDefaults br) (subTabCache br)
-  where
-   go (def@(r,_):ds) stc_ = case checkEnabled1 p br r ab ar stc_ of
-                              (True,  stc') -> let (l,stc'') = go ds stc' in
-                                               (def:l, stc'')
-                              (False, stc') -> go ds stc'
-   go [] stc_ = ([],stc_)
-
-checkEnabled1:: Params -> Branch -> Rule -> Applicable r -> ApplyRule r -> SubTabCache
-             -> (Bool, SubTabCache)
-checkEnabled1 p br (Rule _ j' c') ab ar stc
-  = go justifs stc
-    where
-     go (j:js) stc_ = case runTableau (language br) p (common `conj` j) Nothing ab ar stc_ of
-                        (False, stc') -> (False, stc')
-                        (True, stc')  -> go js stc'
-     go [] stc_     = (True, stc_)
-     justifs = j':(map (justif.fst) $ detachedDefaults br)
-     conseqs = c':map (conseq.fst) (detachedDefaults br)
-     common  = foldr conj (facts br) conseqs
+       f       = foldr conj (conseq r `conj` facts br) conseqs
 
 -- simplified tableau calculus to check default rules conditions
 type Depth = Int

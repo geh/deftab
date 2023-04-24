@@ -2,7 +2,7 @@ classical
 facts:
 P2;
 defaults:
-T --- P1  --> (P3 v P4) ;
-T --- !P1  --> (!P2 v P3) ;
+T --> P1 ^ (P3 v P4) ;
+T --> !P1 ^ (!P2 v P3) ;
 consequence:
 P3

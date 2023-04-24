@@ -63,7 +63,6 @@ showPar f@(Neg (Atm _)) = show f
 showPar f = "( " ++ show f ++ " )"
 
 data Rule = Rule { prereq :: Formula
-                 , justif :: Formula
                  , conseq :: Formula }   deriving (Eq,Ord,Show)
 
 
@@ -79,14 +78,14 @@ parseInput s = (lang,fLang, fs, ds, csq)
             = case lang of
                Classical      -> (map convert fs', map convertRule ds', map convert csq')
                Intuitionistic -> (map convint fs', map convintRule ds', map convint csq')
-          ruleFs         = concatMap (\(Rule f1 f2 f3) -> [f1,f2,f3]) ds
+          ruleFs         = concatMap (\(Rule f1 f2) -> [f1,f2]) ds
           fLang          = langInfo $ fs++ruleFs++csq
 
 convertRule :: Rule' -> Rule
-convertRule (Rule' f1 f2 f3) = Rule (convert f1) (convert f2) (convert f3)
+convertRule (Rule' f1 f2) = Rule (convert f1) (convert f2)
 
 convintRule :: Rule' -> Rule
-convintRule (Rule' f1 f2 f3) = Rule (convint f1) (convint f2) (convint f3)
+convintRule (Rule' f1 f2) = Rule (convint f1) (convint f2)
 
 -- convert parsed formula to formula usable by tableau calculus
 -- classical logic

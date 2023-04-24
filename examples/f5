@@ -2,6 +2,6 @@ intuitionistic
 facts:
 P1;
 defaults:
-T --- T --> T;
+T --> T;
 consequence:
 P0 v !P0

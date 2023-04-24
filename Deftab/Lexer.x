@@ -64,8 +64,7 @@ hyloTokens :-
 
   \.                        { discardValue TokenDot}
 
-  "---"                     { discardValue TokenRuleSep1 }
-  "-->"                     { discardValue TokenRuleSep2  }
+  "-->"                     { discardValue TokenRuleSep }
 
   \,                        { discardValue TokenComma }
   \;                        { discardValue TokenSC }
@@ -86,7 +85,7 @@ data Token = TokenIntuitionistic  | TokenClassical
            | TokenImp             | TokenDimp
            | TokenA               | TokenE
            | TokenOB              | TokenCB
-           | TokenRuleSep1        | TokenRuleSep2
+           | TokenRuleSep
            | TokenSC              | TokenComma
            | TokenFacts           | TokenDefaults       | TokenConsequence
            | TokenFof             | TokenDot
