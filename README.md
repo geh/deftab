@@ -1,4 +1,18 @@
-# Deftab, a tableau-based intuitionistic prover with defaults
+# Deftab, a tableau-based modal prover with defaults
+
+Deftab implements a tableau calculus to handle
+modal logics with defaults, namely:
+
+* hybrid default logic
+* intuitionistic default logic
+
+It handles two consequence checks:
+
+* sceptical consequence (by default)
+* credulous consequence
+
+Currently, Deftab only supports normal default rules
+(rules where the justification is equal to the consequent).
 
 ## How to compile
 
