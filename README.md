@@ -6,12 +6,9 @@ modal logics with defaults, namely:
 * hybrid default logic
 * intuitionistic default logic
 
-It handles two consequence checks:
+It handles sceptical consequence check.
 
-* sceptical consequence (by default)
-* credulous consequence
-
-Currently, Deftab only supports normal default rules
+Deftab supports normal default rules only
 (rules where the justification is equal to the consequent).
 
 ## How to compile

@@ -17,7 +17,6 @@ import System.Console.CmdArgs
 import Deftab.CommandLine
    ( defaultParams, checkParams, filename, timeout
    , Params(strategy, cache), reflexive, transitive, no_facts, no_defaults, bench
-   , sceptical
    , strategy1, strategy2
    )
 import Deftab.Branch
@@ -91,16 +90,12 @@ runTask lang fLang fs ds csq p =
     --
     whenNormal $ printOutMetricsFinal stats
     --
-    case (sceptical p', result) of
-       -- sceptical consequence
-       (True, OPEN ext)  | null ds' -> myPutStrLn "Not a sceptical consequence."
-                         | otherwise -> do myPutStrLn "Not a sceptical consequence, found bad extension:"
-                                           myPutStrLn $ show ext
-       (True, CLOSED _ _)  -> myPutStrLn "Indeed a sceptical consequence."
-       -- credulous consequence
-       (False, OPEN _)     -> myPutStrLn "Not a credulous consequence."
-       (False, CLOSED _ _) -> myPutStrLn "Indeed a credulous consequence."
-
+    case result of
+       OPEN ext  | null ds' -> myPutStrLn "Not a sceptical consequence."
+                 | otherwise
+                    -> do myPutStrLn "Not a sceptical consequence, found bad extension:"
+                          myPutStrLn $ show ext
+       CLOSED _ _ -> myPutStrLn "Indeed a sceptical consequence."
     return result
 
 tableauInit :: Params -> BranchInfo -> IO (OpenFlag,Statistics)

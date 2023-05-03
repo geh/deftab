@@ -20,7 +20,6 @@ data Params = Params {
          , reflexive       :: Bool
          , transitive      :: Bool
          , bench           :: Bool
-         , sceptical       :: Bool
          } deriving (Show, Data, Typeable)
 
 defaultParams :: Annotate Ann
@@ -37,7 +36,6 @@ defaultParams
      , reflexive     := False   += help "for classical input, set models as reflexive"
      , transitive    := False   += help "for classical input, set models as transitive"
      , bench         := False   += help "run different strategies on input and report times"
-     , sceptical     := True    += help "check for sceptical consequence; set --sceptical=False for credulous"
      ] += verbosity
 
 strategy1, strategy2 :: String

@@ -9,7 +9,7 @@ import Deftab.Statistics(Statistics,updateStep,printOutMetrics,
                        recordClosedBranch,recordFiredRule)
 import Deftab.Branch(BranchInfo(..), detachedDefaults, subTabCache
                     , SubTabCache, emptyCache, insertCache)
-import Deftab.CommandLine(backjumping,Params,configureStats, sceptical)
+import Deftab.CommandLine(backjumping,Params,configureStats)
 import Deftab.Rules(applyRule,applicableRule,ruleToId)
 import Data.List ( nub )
 import Deftab.Formula(Formula,Rule(conseq),DependencySet,dsEmpty,dsMember,dsUnion)
@@ -20,8 +20,7 @@ data OpenFlag = OPEN [Formula] -- TODO open branches could keep subtableaux cach
               | CLOSED DependencySet SubTabCache
 
 tableauStart :: Params -> BranchInfo -> TableauMonad OpenFlag
-tableauStart p bi | sceptical p = configureStats p >> tableauDown p 0 bi
-                  | otherwise   = configureStats p >> tableauDownCred p 0 bi
+tableauStart p bi = configureStats p >> tableauDown p 0 bi
 
 tableauDown :: Params -> Depth -> BranchInfo -> TableauMonad OpenFlag
 tableauDown p depth branchInfo =
