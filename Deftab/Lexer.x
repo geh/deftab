@@ -12,8 +12,8 @@ import qualified Data.ByteString.Char8 as C
 
 %wrapper "posn"
 
-$digit = [0-9]                  -- digits
-$alpha = [a-zA-Z]               -- alphabetic characters
+$digit = [0-9]
+$alpha = [a-zA-Z]
 $alphaNum = [$alpha$digit]
 
 @int = \-?$digit+
@@ -33,9 +33,11 @@ hyloTokens :-
   conjecture                { discardValue TokenConjecture }
 
   \<\>                      { discardValue TokenDia }
+  \<R1\>                    { discardValue TokenDia }
   dia                       { discardValue TokenDia }
 
   \[\]                      { discardValue TokenBox }
+  \[R1\]                    { discardValue TokenBox }
   box                       { discardValue TokenBox }
 
   \:                        { discardValue TokenAt  }
