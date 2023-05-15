@@ -1,0 +1,14 @@
+% sink example (N5 is sink)
+classical
+
+facts:
+A(!N5 -> <>N5);
+A<>true;
+
+defaults:
+T --> N1: <>N2;
+T --> N2: !N5;
+T --> N2: ([]N2);
+
+consequence:
+N1:<><>N5;
