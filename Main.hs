@@ -11,6 +11,7 @@ import System.CPUTime( getCPUTime )
 import qualified System.Timeout as T
 import System.IO.Strict ( readFile )
 import Prelude hiding ( readFile )
+import Text.Printf
 import System.Console.CmdArgs
    ( whenNormal, whenLoud, details, summary
    , (+=), cmdArgs_ )
@@ -110,9 +111,11 @@ time action =
      result <- action
      end <- getCPUTime
      let elapsedTime = fromInteger (end - start) / 1000000000000.0
-     myPutStrLn $ "Elapsed time: " ++ show (elapsedTime :: Double)
+     myPutStrLn $ "Elapsed time: " ++ roundToStr 2 (elapsedTime::Double) ++ " seconds"
      return result
 
 myPutStrLn :: String -> IO ()
 myPutStrLn str = whenNormal $ putStrLn str
 
+roundToStr :: (PrintfArg a, Floating a) => Int -> a -> String
+roundToStr = printf "%0.*f"
