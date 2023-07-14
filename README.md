@@ -17,6 +17,8 @@ You need:
 
 * ghc 8.4 or newer
 * cabal-install 2.4 or newer
+* alex
+* happy
 
 Compilation steps:
 
